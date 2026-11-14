@@ -19,7 +19,7 @@ Google Drive: https://drive.google.com/drive/folders/1UQP9r5Sy3fwqV7JlfrrqpQL1qG
   
   Method Selection and Planning (Plan1.pdf): [https://drive.google.com/file/d/1XfTGECqd2WMiGcMb6LB1cehZioaC0Ey8/view?usp=sharing]
   
-  Architecture (Arch1.pdf): 
+  Architecture (Arch1.pdf): https://drive.google.com/file/d/1UHH7_rTKipt_ikhZDzdOMoSi8gUfLyc_/view?usp=sharing
   
   Implementation (Impl.pdf): 
   
