@@ -13,7 +13,7 @@ Google Drive: https://drive.google.com/drive/folders/1UQP9r5Sy3fwqV7JlfrrqpQL1qG
 
 **Links to Required Files:**
 
-  Requirements (Req1.pdf): https://drive.google.com/file/d/1RMI_xG9iionGQzJyI20T9Xbe2keom1Ar/view?usp=sharing
+  Requirements (Req1.pdf): https://drive.google.com/file/d/1_NBA4CHCOFnyQ-X3JJsbZ488lu35vqPh/view?usp=drive_link
   
   Risk Assessment and Mitigation (Risk1.pdf): https://drive.google.com/file/d/13XNPALLcQhVEKBt0jztk_XVSft1Imm5-/view?usp=sharing
   
