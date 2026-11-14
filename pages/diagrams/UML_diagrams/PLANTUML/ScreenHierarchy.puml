@@ -1,0 +1,27 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class ScreenAdapter {
+    <<LibGDX>>
+}
+
+class ControlsScreen {
+    - Main game
+    - Stage stage
+}
+
+class GameScreen {
+    - Main game
+    - GameWorld world
+}
+
+class MenuScreen {
+    - Main game
+    - Stage stage
+}
+
+ScreenAdapter <|-- ControlsScreen
+ScreenAdapter <|-- GameScreen
+ScreenAdapter <|-- MenuScreen
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Item {
+    - String name
+    - CountdownTimer cooldown
+    + void update(float delta)
+    + boolean tryUse(GameWorld world)
+    # {abstract} void activate(GameWorld world)
+}
+
+class BurstItem {
+    # void activate(GameWorld world)
+}
+
+class OrbitItem {
+    # void activate(GameWorld world)
+}
+
+abstract class ItemEffect {
+    + {abstract} void update(float delta)
+    + {abstract} boolean isFinished()
+}
+
+class BurstEffect {
+    - GameWorld world
+    + void update(float delta)
+    + boolean isFinished()
+}
+
+Item <|-- BurstItem
+Item <|-- OrbitItem
+ItemEffect <|-- BurstEffect
+
+@enduml

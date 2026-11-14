@@ -1,0 +1,31 @@
+@startuml event_manager_update
+title EventManager.update(delta): priority order
+start
+if (cutscene active?) then (yes)
+  :cutscene.update(delta);
+  if (cutscene finished?) then (yes)
+    :cutscene.end(world), clear cutscene;
+  endif
+  stop
+endif
+:check trigger zones;
+if (player inside a zone?) then (yes)
+  :start CutsceneEvent with the zone's pages;
+  :remove the zone (one-shot);
+  stop
+endif
+if (timed event active?) then (yes)
+  :timedEvent.update(delta);
+  if (event finished?) then (yes)
+    :timedEvent.end(world), clear event;
+  endif
+  stop
+endif
+if (boost not started yet?) then (yes)
+  :count down the boost start timer;
+  if (start time reached?) then (yes)
+    :start SpeedChangeEvent;
+  endif
+endif
+stop
+@enduml

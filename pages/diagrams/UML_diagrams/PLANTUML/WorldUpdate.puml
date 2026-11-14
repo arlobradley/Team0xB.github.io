@@ -1,0 +1,45 @@
+@startuml world_update
+title GameWorld.update(delta, aimPoint, viewWidth, viewHeight)
+participant GameScreen
+participant GameWorld
+participant Player
+participant Inventory
+participant Item
+participant ItemEffect
+participant EnemySpawner
+participant Enemy
+participant Projectile
+
+GameScreen -> GameWorld : update(delta, aimPoint, viewWidth, viewHeight)
+GameWorld -> Player : update(delta)
+Player -> Inventory : update(delta)
+Inventory -> Item : update(delta) : cooldowns advance
+GameWorld -> Player : tryFire(aimPoint)
+Player --> GameWorld : Projectile or null
+opt a shot was fired
+  GameWorld -> GameWorld : add projectile
+end
+GameWorld -> Player : pollItemKey()
+Player --> GameWorld : slot (0-4) or -1
+opt an item key was pressed
+  GameWorld -> Inventory : use(slot, world)
+  Inventory -> Item : tryUse(world)
+  Item -> GameWorld : addEffect(...) or addProjectile(...)
+end
+loop each effect
+  GameWorld -> ItemEffect : update(delta)
+end
+loop each projectile
+  GameWorld -> Projectile : update(delta)
+end
+GameWorld -> EnemySpawner : spawn(player.position, viewWidth, viewHeight, delta)
+EnemySpawner --> GameWorld : new enemies
+loop each enemy
+  GameWorld -> Enemy : update(player.position, delta)
+end
+GameWorld -> GameWorld : resolveCollisions()
+loop each projectile overlapping an enemy
+  GameWorld -> Enemy : damage(damage)
+end
+GameWorld -> GameWorld : removeFinishedEntities()
+@enduml

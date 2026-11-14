@@ -1,0 +1,34 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Event {
+    + {abstract} void start(GameWorld world)
+    + {abstract} void end(GameWorld world)
+    + {abstract} void update(float delta)
+    + {abstract} boolean isFinished()
+}
+
+class CutsceneEvent {
+    - String[] pages
+    + void update(float delta)
+    + boolean isFinished()
+}
+
+abstract class TimedEvent {
+    - String message
+    - CountdownTimer duration
+    + void update(float delta)
+    + boolean isFinished()
+}
+
+class SpeedChangeEvent {
+    - float multiplier
+    + void start(GameWorld world)
+    + void end(GameWorld world)
+}
+
+Event <|-- CutsceneEvent
+Event <|-- TimedEvent
+TimedEvent <|-- SpeedChangeEvent
+
+@enduml

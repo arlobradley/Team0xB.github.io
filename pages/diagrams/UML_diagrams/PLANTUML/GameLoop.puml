@@ -1,0 +1,33 @@
+@startuml game_loop
+title GameScreen.render(delta): one frame
+start
+if (Esc pressed?) then (yes)
+  :switch to MenuScreen;
+  stop
+endif
+:cap delta at 1/30 s;
+if (game frozen by a cutscene?) then (yes)
+  :skip timer and world updates;
+else (no)
+  :update countdown timer;
+  :convert mouse position to world coordinates;
+  :GameWorld.update(delta, aim);
+endif
+:show remaining time and inventory slots in the HUD;
+:EventManager.update(delta);
+if (cutscene active?) then (yes)
+  :show textbox with the current page;
+else (no)
+  :hide textbox;
+endif
+if (timed event active?) then (yes)
+  :show notification with seconds left;
+else (no)
+  :hide notification;
+endif
+:centre camera on the player;
+:clear screen and draw grid;
+:GameWorld.render(shapes);
+:Hud.render(delta);
+stop
+@enduml

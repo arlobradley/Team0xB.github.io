@@ -1,0 +1,54 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Entity {
+    + Vector2 position
+    - float radius
+    - boolean removed
+
+    + {abstract} void update(float delta)
+    + {abstract} void render(ShapeRenderer shapes)
+    + boolean overlaps(Entity other)
+    + void remove()
+    + boolean isRemoved()
+}
+
+class Player {
+    + void update(float delta)
+    + Projectile tryFire(Vector2 aimPoint)
+    + void render(ShapeRenderer shapes)
+}
+
+class Enemy {
+    + void update(float delta)
+    + void render(ShapeRenderer shapes)
+}
+
+class Projectile {
+    - Vector2 trajectory
+
+    + void update(float delta)
+    + void render(ShapeRenderer shapes)
+}
+
+class OrbitingProjectile {
+    - Entity center
+    - float angle
+
+    + void update(float delta)
+}
+
+class TriggerZone {
+    - String[] pages
+
+    + boolean contains(Vector2 point)
+    + void render(ShapeRenderer shapes)
+}
+
+Entity <|-- Player
+Entity <|-- Enemy
+Entity <|-- Projectile
+Entity <|-- TriggerZone
+Projectile <|-- OrbitingProjectile
+
+@enduml
